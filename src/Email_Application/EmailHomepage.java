@@ -28,6 +28,11 @@ class EmailHomePage extends JFrame implements ActionListener {
     JButton deleteBtn=new JButton("Delete Mail");
     JButton sendBtn = new JButton("Send Mails");
     JButton viewBtn = new JButton("view Mails");
+    private final JLabel lblName = new JLabel("Name");
+    private final JLabel lblMail = new JLabel("Mail");
+    private final JLabel lblPhoneNumber = new JLabel("phone Number");
+    private final JLabel lblBranch = new JLabel("Branch");
+    private final JLabel lblBatch = new JLabel("Batch");
 
     public void setLayoutManager()
     {
@@ -62,27 +67,46 @@ class EmailHomePage extends JFrame implements ActionListener {
     public void addComponentsToContainer()
     {
         container.add(addingMailText);
+        container.add(nameOfStudent);
+        container.add(phoneNumber);
+        container.add(batchOfpassout);
+        container.add(branchOfStudent);
         container.add(deleteMailText);
         container.add(messageTxt);
         container.add(AddMail);
         container.add(deleteBtn);
         container.add(sendBtn);
         container.add(viewBtn);
+        lblName.setBounds(83, 11, 46, 14);
+
+        getContentPane().add(lblName);
+        lblMail.setBounds(268, 11, 46, 14);
+
+        getContentPane().add(lblMail);
+        lblPhoneNumber.setBounds(437, 11, 93, 14);
+
+        getContentPane().add(lblPhoneNumber);
+        lblBranch.setBounds(71, 67, 46, 14);
+
+        getContentPane().add(lblBranch);
+        lblBatch.setBounds(268, 67, 46, 14);
+
+        getContentPane().add(lblBatch);
 
     }
     public void setLocationAndSize()
     {
-        addingMailText.setBounds(31,26,150,30);
-        nameOfStudent.setBounds(31,20,150,30);
-        phoneNumber.setBounds(31,26,150,30);
-        batchOfpassout.setBounds(31,26,150,30);
-        branchOfStudent.setBounds(31,26,150,30);
-        deleteMailText.setBounds(31,92,150,30);
-        messageTxt.setBounds(31,149,150,30);
-        AddMail.setBounds(202,26,150,30);
-        deleteBtn.setBounds(202,92,150,30);
-        sendBtn.setBounds(202, 149, 150, 30);
-        viewBtn.setBounds(202, 204, 150, 30);
+        addingMailText.setBounds(207,26,150,30);
+        nameOfStudent.setBounds(31,26,150,30);
+        phoneNumber.setBounds(399,26,150,30);
+        batchOfpassout.setBounds(207,92,150,30);
+        branchOfStudent.setBounds(31,92,150,30);
+        deleteMailText.setBounds(222,165,150,30);
+        messageTxt.setBounds(222,206,150,30);
+        AddMail.setBounds(616,57,150,30);
+        deleteBtn.setBounds(31,165,150,30);
+        sendBtn.setBounds(31, 204, 150, 30);
+        viewBtn.setBounds(31, 247, 150, 30);
 
 
     }
