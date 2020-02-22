@@ -23,11 +23,14 @@ class EmailHomePage extends JFrame implements ActionListener {
     JTextField batchOfpassout=new JTextField();
     JTextField branchOfStudent=new JTextField();
     JTextField deleteMailText=new JTextField();
+    JTextField EnterBranch=new JTextField();
+    JTextField enterStudent=new JTextField();
     JTextField messageTxt=new JTextField();
-    JButton AddMail=new JButton("Add Mail");
-    JButton deleteBtn=new JButton("Delete Mail");
+    JButton AddMail=new JButton("Add srudent");
+    JButton updateDetails=new JButton("Update Details");
+    JButton deleteBtn=new JButton("Delete Student");
     JButton sendBtn = new JButton("Send Mails");
-    JButton viewBtn = new JButton("view Mails");
+    JButton viewBtn = new JButton("view Student");
     private final JLabel lblName = new JLabel("Name");
     private final JLabel lblMail = new JLabel("Mail");
     private final JLabel lblPhoneNumber = new JLabel("phone Number");
@@ -77,6 +80,18 @@ class EmailHomePage extends JFrame implements ActionListener {
         container.add(deleteBtn);
         container.add(sendBtn);
         container.add(viewBtn);
+        container.add(EnterBranch);
+        container.add(enterStudent);
+        container.add(updateDetails);
+
+        JLabel lblEnterBranch = new JLabel("Enter Branch");
+        lblEnterBranch.setBounds(612, 183, 92, 30);
+        getContentPane().add(lblEnterBranch);
+
+        JLabel lblEnterStudent = new JLabel("Enter Student");
+        lblEnterStudent.setBounds(244, 199, 115, 14);
+        getContentPane().add(lblEnterStudent);
+
         lblName.setBounds(83, 11, 46, 14);
 
         getContentPane().add(lblName);
@@ -96,17 +111,21 @@ class EmailHomePage extends JFrame implements ActionListener {
     }
     public void setLocationAndSize()
     {
-        addingMailText.setBounds(207,26,150,30);
         nameOfStudent.setBounds(31,26,150,30);
-        phoneNumber.setBounds(399,26,150,30);
-        batchOfpassout.setBounds(207,92,150,30);
+        addingMailText.setBounds(222,26,150,30);
+
+        phoneNumber.setBounds(412,26,150,30);;
         branchOfStudent.setBounds(31,92,150,30);
-        deleteMailText.setBounds(222,165,150,30);
-        messageTxt.setBounds(222,206,150,30);
-        AddMail.setBounds(616,57,150,30);
-        deleteBtn.setBounds(31,165,150,30);
-        sendBtn.setBounds(31, 204, 150, 30);
-        viewBtn.setBounds(31, 247, 150, 30);
+        batchOfpassout.setBounds(222,92,150,30);
+        deleteMailText.setBounds(31,92,150,30);
+        messageTxt.setBounds(222,224,150,30);
+        AddMail.setBounds(612,47,150,30);
+        deleteBtn.setBounds(31,204,150,30);
+        EnterBranch.setBounds(590, 224, 150, 30);
+        sendBtn.setBounds(412, 224, 150, 30);
+        updateDetails.setBounds(612, 92, 150, 30);
+        viewBtn.setBounds(31, 245, 150, 30);
+        enterStudent.setBounds(222, 262, 150, 30);
 
 
     }
@@ -116,6 +135,7 @@ class EmailHomePage extends JFrame implements ActionListener {
         deleteBtn.addActionListener(this);
         sendBtn.addActionListener(this);
         viewBtn.addActionListener(this);
+        updateDetails.addActionListener(this);
     }
 
 

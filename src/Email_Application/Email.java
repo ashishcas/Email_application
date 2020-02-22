@@ -7,7 +7,7 @@ public class Email {
         EmailHomePage Emailframe = new EmailHomePage();
         Emailframe.setTitle("Email HomePage");
         Emailframe.setVisible(true);
-        Emailframe.setBounds(10, 10, 370, 600);
+        Emailframe.setBounds(100, 100, 800, 600);
         Emailframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Emailframe.setResizable(false);
 
