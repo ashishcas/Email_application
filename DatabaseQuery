@@ -1,0 +1,9 @@
+//SQL Query TO create Table for Student
+CREATE TABLE student(
+   student_id serial PRIMARY KEY,
+   name VARCHAR (50)  NOT NULL,
+   email VARCHAR (355) UNIQUE NOT NULL,
+   phone VARCHAR (50) NOT NULL,
+   branch VARCHAR (50) NOT NULL,
+   batch VARCHAR (50) NOT NULL,
+);

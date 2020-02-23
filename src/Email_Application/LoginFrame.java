@@ -100,7 +100,7 @@ public class LoginFrame extends JFrame implements ActionListener {
                     EmailHomePage frame = new EmailHomePage();
                     frame.setTitle("Email HomePage");
                     frame.setVisible(true);
-                    frame.setBounds(10, 10, 370, 600);
+                    frame.setBounds(100, 100, 800, 800);
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.setResizable(false);
                 }

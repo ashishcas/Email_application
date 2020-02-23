@@ -36,6 +36,7 @@ class EmailHomePage extends JFrame implements ActionListener {
     private final JLabel lblPhoneNumber = new JLabel("phone Number");
     private final JLabel lblBranch = new JLabel("Branch");
     private final JLabel lblBatch = new JLabel("Batch");
+    private JTextField textField = new JTextField();
 
     public void setLayoutManager()
     {
@@ -108,6 +109,13 @@ class EmailHomePage extends JFrame implements ActionListener {
 
         getContentPane().add(lblBatch);
 
+        textField.setBounds(590, 287, 150, 30);
+        container.add(textField);
+
+        JLabel lblEnterYear = new JLabel("Enter Year");
+        lblEnterYear.setBounds(600, 262, 104, 14);
+        getContentPane().add(lblEnterYear);
+
     }
     public void setLocationAndSize()
     {
@@ -147,6 +155,45 @@ class EmailHomePage extends JFrame implements ActionListener {
         //Function For ADD EMAIL
         if(e.getSource() == AddMail) {
             String addEmail = addingMailText.getText();
+            String phone = phoneNumber.getText();
+            String name = nameOfStudent.getText();
+            String batch = batchOfpassout.getText();
+            String branch = branchOfStudent.getText();
+
+            if(!addEmail.isEmpty() && !phone.isEmpty() && !name.isEmpty() && !batch.isEmpty() && !branch.isEmpty()) {
+                try {
+                    Class.forName("org.postgresql.Driver");
+                    c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/alumnimeet",
+                            "postgres", "lowes123");
+                    c.setAutoCommit(false);
+                    System.out.println("Opened database successfully");
+                    stmt = c.createStatement();
+                    PreparedStatement ps = c.prepareStatement("INSERT INTO student(name,email,phone,branch,batch) VALUES(?,?,?,?,?)");
+                    ps.setString(1, name);
+                    ps.setString(2, addEmail);
+                    ps.setString(3, phone);
+                    ps.setString(4, branch);
+                    ps.setString(5, batch);
+                    ps.executeUpdate();
+                    stmt.close();
+                    c.commit();
+                    c.close();
+                    System.out.println("Student Data is added Succesfully");
+
+                } catch (Exception err) {
+                    err.printStackTrace();
+                    System.err.println(err.getClass().getName() + ": " + err.getMessage());
+                    System.exit(0);
+                }
+            }
+        }
+
+        if(e.getSource() == updateDetails) {
+            String addEmail = addingMailText.getText();
+            String phone = phoneNumber.getText();
+            String name = nameOfStudent.getText();
+            String batch = batchOfpassout.getText();
+            String branch = branchOfStudent.getText();
 
             if(!addEmail.isEmpty()) {
                 try {
@@ -156,13 +203,17 @@ class EmailHomePage extends JFrame implements ActionListener {
                     c.setAutoCommit(false);
                     System.out.println("Opened database successfully");
                     stmt = c.createStatement();
-                    PreparedStatement ps = c.prepareStatement("INSERT INTO EMAIL(email) VALUES(?)");
-                    ps.setString(1, addEmail);
+                    PreparedStatement ps = c.prepareStatement("UPDATE student set name = ?,email = ?,phone= ?,branch = ?,batch = ?");
+                    ps.setString(1, name);
+                    ps.setString(2, addEmail);
+                    ps.setString(3, phone);
+                    ps.setString(4, branch);
+                    ps.setString(5, batch);
                     ps.executeUpdate();
                     stmt.close();
                     c.commit();
                     c.close();
-                    System.out.println("Mailed is added Succesfully");
+                    System.out.println("Student Details are  Updated Succesfully");
 
                 } catch (Exception err) {
                     err.printStackTrace();
@@ -172,29 +223,29 @@ class EmailHomePage extends JFrame implements ActionListener {
             }
         }
         if(e.getSource() == deleteBtn) {
-            String deleteEmail = deleteMailText.getText();
+            String deleteStudent = messageTxt.getText();
+            if(!deleteStudent.isEmpty()) {
+                try {
+                    Class.forName("org.postgresql.Driver");
+                    c = DriverManager
+                            .getConnection("jdbc:postgresql://localhost:5432/alumnimeet",
+                                    "postgres", "lowes123");
+                    c.setAutoCommit(false);
+                    System.out.println("Opened database successfully");
+                    stmt = c.createStatement();
+                    PreparedStatement ps = c.prepareStatement("DELETE FROM  student WHERE name = ?");
+                    ps.setString(1, deleteStudent);
+                    ps.executeUpdate();
+                    stmt.close();
+                    c.commit();
+                    c.close();
+                    System.out.println("Student Data  is Deleted Succesfully");
 
-
-            try {
-                Class.forName("org.postgresql.Driver");
-                c = DriverManager
-                        .getConnection("jdbc:postgresql://localhost:5432/alumnimeet",
-                                "postgres", "lowes123");
-                c.setAutoCommit(false);
-                System.out.println("Opened database successfully");
-                stmt = c.createStatement();
-                PreparedStatement ps = c.prepareStatement("DELETE FROM  EMAIL WHERE email = ?");
-                ps.setString(1, deleteEmail);
-                ps.executeUpdate();
-                stmt.close();
-                c.commit();
-                c.close();
-                System.out.println("Mailed is added Succesfully");
-
-            } catch (Exception err) {
-                err.printStackTrace();
-                System.err.println(err.getClass().getName() + ": " + err.getMessage());
-                System.exit(0);
+                } catch (Exception err) {
+                    err.printStackTrace();
+                    System.err.println(err.getClass().getName() + ": " + err.getMessage());
+                    System.exit(0);
+                }
             }
         }
         if(e.getSource() == viewBtn) {
